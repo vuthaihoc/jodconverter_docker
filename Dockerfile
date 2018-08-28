@@ -49,6 +49,13 @@ COPY ./jodconverter_rest.jar /jodconverter/
 COPY ./fonts/* /usr/local/share/fonts/
 RUN fc-cache -fv
 
+# Set the locale
+#RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+#    locale-gen
+ENV LANG C.UTF-8  
+ENV LANGUAGE C:en  
+ENV LC_ALL C.UTF-8    
+
 EXPOSE 9999
 
 ENTRYPOINT java -jar /jodconverter/jodconverter_rest.jar --server.port=9999

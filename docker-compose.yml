@@ -1,0 +1,6 @@
+version: "3"
+services:
+  jodconverter_web:
+    image: vuthaihoc/jodconverter_web:latest
+    ports:
+     - "8081:9999"
