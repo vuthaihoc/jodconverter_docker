@@ -3,8 +3,14 @@ FROM ubuntu:bionic
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get clean           \
-&& rm -rf /var/lib/apt/lists/* \
-&& apt-get update          
+&& rm -rf /var/lib/apt/lists/*
+# && apt-get update      
+
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt bionic main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+    DEBIAN_FRONTEND=noninteractive apt-get update
+
 RUN apt-get install -y      \
     ghostscript             \
     libxinerama1            \
